@@ -2,7 +2,7 @@ import Image from 'next/image'
 
 export default function Home() {
   return (
-     <div className="{styles.container}">
+     <div className="relative">
       <Image
         src="https://evoluzione.fra1.cdn.digitaloceanspaces.com/media/schermata-2023-05-31-alle-20-02-52-1200x1200.png"
         alt="ciao"
