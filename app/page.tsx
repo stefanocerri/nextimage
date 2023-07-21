@@ -11,6 +11,7 @@ export default function Home() {
         fill
         className=' '
         priority
+        quality={30}
       //sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 100vw"
       />
     </div>
@@ -23,6 +24,7 @@ export default function Home() {
               //style={{ objectFit: "cover" }}
               fill
               className=' '
+              quality={30}
             //sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 100vw"
             />
           </div>
@@ -35,6 +37,7 @@ export default function Home() {
               //style={{ objectFit: "cover" }}
               fill
               className=' '
+              quality={30}
             //sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 100vw"
             />
           </div>
@@ -47,6 +50,7 @@ export default function Home() {
               //style={{ objectFit: "cover" }}
               fill
               className=' '
+              quality={30}
             //sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 100vw"
             />
           </div>
