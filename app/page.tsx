@@ -1,8 +1,58 @@
 import Image from 'next/image'
 
+import useGyroscope from "react-hook-gyroscope";
+import { motion } from "framer-motion";
+
+
 export default function Home() {
+  const state = useGyroscope({ frequency: 5000 });
+
+
   return (
     <>
+
+    <div
+      className="App"
+      style={{
+        width: "100vw",
+        height: "100vh",
+        perspective: 500,
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        background: "#60f"
+      }}
+    >
+      <motion.div
+        animate={{
+          ...state
+          // x: acceleration.x * 10,
+          // y: acceleration.y * 10,
+          // z: acceleration.z * 10,
+          // rotateX: rotationRate.alpha,
+          // rotateY: rotationRate.beta,
+          // rotateZ: rotationRate.gamma
+        }}
+      >
+        <pre
+          style={{
+            width: 200,
+            height: 200,
+            boxShadow: "0 0 20px rgba(0,0,0,0.5)",
+            borderRadius: 15,
+            background: "white",
+            transform: "rotate3D(var(--rotate))"
+          }}
+        >
+          {JSON.stringify(state, null, "\t")}
+        </pre>
+      </motion.div>
+    </div>
+
+
+
+
      <div className="relative aspect-[1/1] w-full">
       <Image
         src="https://evoluzione.fra1.cdn.digitaloceanspaces.com/media/schermata-2023-05-31-alle-20-02-52-1200x1200.png"
