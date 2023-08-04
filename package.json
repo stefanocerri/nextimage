@@ -21,7 +21,7 @@
     "react-dom": "18.2.0",
     "tailwindcss": "3.3.3",
     "typescript": "5.1.6",
-    "framer-motion": "10.15.0",
-    "react-hook-gyroscope": "^1.1.12"
+    "@use-gesture/react": "10.2.17",
+    "react-hook-accelerometer": "1.1.3"
   }
 }

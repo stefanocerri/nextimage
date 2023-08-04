@@ -1,53 +1,42 @@
+"use client"
 import Image from 'next/image'
 
-import useGyroscope from "react-hook-gyroscope";
-import { motion } from "framer-motion";
+import { useEffect, useState } from 'react';
+
+async function requestDeviceMotionEventPermission() {
+  try {
+    // @ts-ignore
+    const response = await window.DeviceMotionEvent.requestPermission();
+    return response;
+  } catch (err) {}
+}
 
 
 export default function Home() {
-  const state = useGyroscope({ frequency: 5000 });
-
+  const [[a, b, g], setRotation] = useState([0, 0, 0]);
+  useEffect(() => {
+    const callback = (e: DeviceOrientationEvent): void => {
+      setRotation([e.alpha || 0, e.beta || 0, e.gamma || 0]);
+    };
+    window.addEventListener("deviceorientation", callback, true);
+    return () =>
+      window.removeEventListener("deviceorientation", callback, true);
+  }, []);
 
   return (
     <>
 
-    <div
-      className="App"
-      style={{
-        width: "100vw",
-        height: "100vh",
-        perspective: 500,
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        background: "#60f"
-      }}
-    >
-      <motion.div
-        animate={{
-          ...state
-          // x: acceleration.x * 10,
-          // y: acceleration.y * 10,
-          // z: acceleration.z * 10,
-          // rotateX: rotationRate.alpha,
-          // rotateY: rotationRate.beta,
-          // rotateZ: rotationRate.gamma
+      <div className="App">
+      <button
+        onClick={() => {
+          requestDeviceMotionEventPermission();
         }}
       >
-        <pre
-          style={{
-            width: 200,
-            height: 200,
-            boxShadow: "0 0 20px rgba(0,0,0,0.5)",
-            borderRadius: 15,
-            background: "white",
-            transform: "rotate3D(var(--rotate))"
-          }}
-        >
-          {JSON.stringify(state, null, "\t")}
-        </pre>
-      </motion.div>
+        {"request permission"}
+      </button>
+      <h2>{a.toFixed(1)}</h2>
+      <h2>{b.toFixed(1)}</h2>
+      <h2>{g.toFixed(1)}</h2>
     </div>
 
 
